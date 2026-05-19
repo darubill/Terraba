@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="text-primary fw-bold mb-0">
+                <i class="bi bi-bar-chart"></i> Reportes
+            </h3>
+            <small class="text-secondary">Análisis de campañas y cotizaciones</small>
+        </div>
+
+        <!-- BOTÓN NUEVO -->
+        <button class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Generar Reporte
+        </button>
+
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card shadow-sm p-3 mb-4">
+
+        <div class="row g-3">
+
+            <div class="col-md-3">
+                <label class="form-label text-secondary">Fecha Inicio</label>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label text-secondary">Fecha Fin</label>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label text-secondary">Cliente</label>
+                <input type="text" class="form-control" placeholder="Nombre cliente">
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end gap-2">
+
+                <button class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i>
+                </button>
+
+                <button class="btn btn-outline-secondary w-100">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLA -->
+    <div class="card shadow-sm">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Campaña</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th class="text-end">Ingreso</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="fw-semibold">Juan Pérez</td>
+                        <td class="text-secondary">Redes Sociales</td>
+
+                        <td>
+                            <span class="badge bg-warning">En proceso</span>
+                        </td>
+
+                        <td>05/04/2026</td>
+
+                        <td class="text-end fw-bold">$1500</td>
+                    </tr>
+
+                    <tr>
+                        <td class="fw-semibold">Ana López</td>
+                        <td class="text-secondary">Publicidad TV</td>
+
+                        <td>
+                            <span class="badge bg-success">Finalizada</span>
+                        </td>
+
+                        <td>01/04/2026</td>
+
+                        <td class="text-end fw-bold">$3000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

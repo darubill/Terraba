@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Detalle Cotización";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow p-4">
+
+                <!-- HEADER EMPRESA -->
+                <div class="text-center mb-3">
+                    <h3 class="text-primary fw-bold">
+                        <i class="bi bi-megaphone"></i> Térraba Comunicaciones
+                    </h3>
+                    <small class="text-muted">WCW SA</small>
+                </div>
+
+                <hr>
+
+                <!-- INFO CLIENTE -->
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <p><strong>Cliente:</strong> Juan Pérez</p>
+                        <p><strong>Correo:</strong> juan@email.com</p>
+                    </div>
+
+                    <div class="col-md-6 text-md-end">
+                        <p><strong>Fecha:</strong> 20/04/2026</p>
+                        <p>
+                            <strong>Estado:</strong>
+                            <span class="badge bg-warning">Pendiente</span>
+                        </p>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!-- DETALLE -->
+                <h5 class="text-primary mb-3">Detalle del Servicio</h5>
+
+                <table class="table table-bordered">
+
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Detalle</th>
+                            <th>Costo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Medio</td>
+                            <td>Redes Sociales</td>
+                            <td>$100</td>
+                        </tr>
+
+                        <tr>
+                            <td>Duración</td>
+                            <td>5 días</td>
+                            <td>$500</td>
+                        </tr>
+
+                        <tr>
+                            <td>Alcance</td>
+                            <td>Nacional</td>
+                            <td>$200</td>
+                        </tr>
+
+                        <tr>
+                            <td>Diseño</td>
+                            <td>Premium</td>
+                            <td>$150</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <!-- TOTAL -->
+                <div class="text-end">
+                    <h4 class="text-primary fw-bold">
+                        Total: $950
+                    </h4>
+                </div>
+
+                <hr>
+
+                <!-- ACCIONES (AQUÍ VAN LAS RUTAS CORRECTAS) -->
+                <div class="d-flex justify-content-end gap-2 mt-3">
+
+                    <!-- EMPRESA ENVÍA -->
+                    <a href="/Cotizaciones/EnviarUsuario" class="btn btn-primary">
+                        <i class="bi bi-send"></i> Enviar
+                    </a>
+
+                    <!-- CLIENTE REVISA -->
+                    <a href="/Cotizaciones/RevisionCliente" class="btn btn-outline-primary">
+                        <i class="bi bi-eye"></i> Vista Cliente
+                    </a>
+                    <!-- CLIENTE CREAR CAMPANA -->
+                    <a href="/Campanas/Create" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat"></i> Convertir en Campaña
+                    </a>
+
+                    <!-- DESCARGA (placeholder) -->
+                    <button class="btn btn-outline-secondary">
+                        <i class="bi bi-download"></i> Descargar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

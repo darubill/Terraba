@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Editar Campaña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center fade-in">
+    <div class="col-md-6">
+
+        <div class="card shadow p-4">
+
+            <h3 class="text-primary text-center mb-3">
+                <i class="bi bi-pencil"></i> Editar Campaña
+            </h3>
+
+            <form>
+
+                <input class="form-control mb-2" value="Juan Pérez">
+                <input class="form-control mb-2" value="Campaña Redes Sociales">
+
+                <select class="form-select mb-2">
+                    <option selected>En proceso</option>
+                    <option>Planificada</option>
+                    <option>Finalizada</option>
+                </select>
+
+                <input type="date" class="form-control mb-2">
+                <input type="date" class="form-control mb-2">
+
+                <button class="btn btn-primary w-100">
+                    Guardar Cambios
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>

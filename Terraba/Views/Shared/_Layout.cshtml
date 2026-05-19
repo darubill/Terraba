@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Térraba Comunicaciones</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+            /* NAVBAR */
+            .navbar {
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-link {
+                border-radius: 8px;
+                padding: 6px 10px !important;
+                transition: 0.2s;
+            }
+
+                .nav-link:hover {
+                    background-color: rgba(255,255,255,0.15);
+                    transform: translateY(-1px);
+                }
+
+            .nav-user {
+                border-left: 1px solid rgba(255,255,255,0.2);
+                padding-left: 15px;
+                margin-left: 10px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+
+            <!-- LOGO -->
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="/Dashboard/Index">
+                <i class="bi bi-broadcast fs-4"></i>
+
+                <div class="d-flex flex-column lh-1">
+                    <span style="font-size: 13px;">Térraba Comunicaciones</span>
+                    <small style="font-size: 10px; opacity: 0.8;">WCW SA</small>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- MENÚ -->
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav ms-auto align-items-center gap-2">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/Index" data-bs-toggle="tooltip" title="Dashboard">
+                            <i class="bi bi-speedometer2"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Clientes/Index" data-bs-toggle="tooltip" title="Clientes">
+                            <i class="bi bi-people"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Cotizaciones/Index" data-bs-toggle="tooltip" title="Cotizaciones">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Campanas/Index" data-bs-toggle="tooltip" title="Campañas">
+                            <i class="bi bi-megaphone"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Configuracion/Index" data-bs-toggle="tooltip" title="Configuración">
+                            <i class="bi bi-gear"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/Reportes" data-bs-toggle="tooltip" title="Reportes">
+                            <i class="bi bi-bar-chart"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Notificaciones/Index" data-bs-toggle="tooltip" title="Notificaciones">
+                            <i class="bi bi-bell"></i>
+                        </a>
+                    </li>
+
+                    <!-- USUARIO -->
+                    <li class="nav-item nav-user d-flex align-items-center gap-2 text-white">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span style="font-size: 13px;">
+                            @Context.Session.GetString("usuario")
+                        </span>
+
+                    </li>
+
+                    <!-- LOGOUT -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Auth/Logout" data-bs-toggle="tooltip" title="Cerrar sesión">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-light text-center p-3 mt-5 shadow-sm">
+        <small>© 2026 Térraba Comunicaciones WCW SA</small> 
+    </footer>
+
+    <!-- TOAST -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="toastNotificacion" class="toast align-items-center text-white border-0">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMensaje"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ACTIVAR TOOLTIPS
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
+        function mostrarNotificacion(mensaje, tipo = "success") {
+
+        let toast = document.getElementById("toastNotificacion");
+
+        toast.className = "toast align-items-center text-white border-0";
+
+        if (tipo === "success") toast.classList.add("bg-success");
+        if (tipo === "error") toast.classList.add("bg-danger");
+        if (tipo === "info") toast.classList.add("bg-info");
+
+        document.getElementById("toastMensaje").innerText = mensaje;
+
+        let t = new bootstrap.Toast(toast);
+        t.show();
+        }
+    </script>
+
+</body>
+</html>

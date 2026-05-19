@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Nueva Campaña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center fade-in">
+    <div class="col-md-6">
+
+        <div class="card shadow p-4">
+
+            <h3 class="text-primary text-center mb-3">
+                <i class="bi bi-plus-circle"></i> Crear Campaña
+            </h3>
+
+            <p class="text-center text-muted">
+                Térraba Comunicaciones WCW SA
+            </p>
+
+            <hr>
+
+            <form>
+
+                <div class="mb-3">
+                    <label>Cliente</label>
+                    <input class="form-control" placeholder="Nombre cliente">
+                </div>
+
+                <div class="mb-3">
+                    <label>Nombre de la campaña</label>
+                    <input class="form-control" placeholder="Ej: Campaña Verano">
+                </div>
+
+                <div class="mb-3">
+                    <label>Estado</label>
+                    <select class="form-select">
+                        <option>Planificada</option>
+                        <option>En proceso</option>
+                        <option>Finalizada</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label>Fecha inicio</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Fecha fin</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Guardar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>

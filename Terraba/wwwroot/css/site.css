@@ -1,0 +1,171 @@
+:root {
+    /* PALETA OFICIAL */
+    --color-primary: #2563EB; /* Azul (acciones principales) */
+    --color-secondary: #22C55E; /* Verde (éxito) */
+    --color-warning: #FACC15; /* Amarillo */
+    --color-error: #EF4444; /* Rojo */
+    --color-bg: #F9FAFB; /* Fondo */
+    --text-primary: #111827; /* Texto principal */
+    --text-secondary: #6B7280; /* Texto secundario */
+    --accent: #2563EB;
+}
+
+/* GENERAL */
+body {
+    background-color: var(--color-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto;
+    font-size: 14px;
+}
+
+/* 🔵 BOTONES PRINCIPALES (AZUL) */
+.btn-primary, .btn-primary:focus, .btn-primary:active {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+    .btn-primary:hover {
+        background-color: #1e4fd8;
+    }
+
+/* 🟢 BOTONES ÉXITO */
+.btn-success, .btn-success:focus, .btn-success:active {
+    background-color: var(--color-secondary) !important;
+    border-color: var(--color-secondary) !important;
+}
+
+/* 🟡 WARNING */
+.btn-warning {
+    background-color: var(--color-warning) !important;
+    border-color: var(--color-warning) !important;
+}
+
+/* 🔴 ERROR */
+.btn-danger {
+    background-color: var(--color-error) !important;
+    border-color: var(--color-error) !important;
+}
+
+/* NAVBAR (AHORA AZUL, MÁS PROFESIONAL) */
+.navbar {
+    background-color: var(--color-primary) !important;
+}
+
+/* TARJETAS */
+.card {
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+    .card:hover {
+        transform: scale(1.01);
+    }
+
+/* INPUTS */
+input, select {
+    border-radius: 10px !important;
+}
+
+/* TABLAS */
+.table-hover tbody tr:hover {
+    background-color: #eef2ff;
+}
+
+/* BADGES */
+.badge {
+    font-size: 0.9em;
+}
+
+    .badge.bg-success {
+        background-color: var(--color-secondary) !important;
+    }
+
+    .badge.bg-warning {
+        background-color: var(--color-warning) !important;
+    }
+
+    .badge.bg-danger {
+        background-color: var(--color-error) !important;
+    }
+
+/* ALERTAS */
+.alert {
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: rgba(34,197,94,0.15);
+}
+
+.alert-warning {
+    background-color: rgba(250,204,21,0.2);
+}
+
+.alert-danger {
+    background-color: rgba(239,68,68,0.15);
+}
+
+/* TOAST */
+.toast {
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+    .toast.bg-success {
+        background-color: var(--color-secondary) !important;
+    }
+
+/* ANIMACIONES */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* DASHBOARD */
+canvas {
+    max-height: 250px;
+}
+
+/* TIPOGRAFÍA */
+.display-primary {
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.display-secondary {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.text-plain {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.accent {
+    font-weight: 500;
+    color: var(--accent);
+}
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}

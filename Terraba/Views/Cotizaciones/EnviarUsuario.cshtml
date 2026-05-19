@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Enviar Cotización";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <div class="row">
+
+        <!-- PANEL IZQUIERDO (RESUMEN) -->
+        <div class="col-md-4">
+
+            <div class="card shadow-sm p-4 h-100">
+
+                <h5 class="text-primary fw-bold mb-3">
+                    <i class="bi bi-file-earmark-text"></i> Resumen
+                </h5>
+
+                <div class="mb-3">
+                    <small class="text-secondary">Cliente</small>
+                    <h6 class="fw-bold">Juan Pérez</h6>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-secondary">Estado</small><br>
+                    <span class="badge bg-warning">Pendiente</span>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-secondary">Total</small>
+                    <h4 class="text-success fw-bold">$950</h4>
+                </div>
+
+                <hr>
+
+                <small class="text-muted">
+                    Esta cotización será enviada al cliente para su revisión y aprobación.
+                </small>
+
+            </div>
+
+        </div>
+
+        <!-- PANEL DERECHO (FORMULARIO) -->
+        <div class="col-md-8">
+
+            <div class="card shadow-sm p-4">
+
+                <!-- HEADER -->
+                <div class="mb-4">
+                    <h3 class="text-primary fw-bold mb-0">
+                        <i class="bi bi-send"></i> Enviar Cotización
+                    </h3>
+                    <small class="text-secondary">
+                        Térraba Comunicaciones WCW SA
+                    </small>
+                </div>
+
+                <form>
+
+                    <!-- EMAIL -->
+                    <div class="mb-3">
+                        <label class="form-label">Correo del cliente</label>
+
+                        <input type="email" class="form-control"
+                               placeholder="cliente@email.com">
+                    </div>
+
+                    <!-- MENSAJE -->
+                    <div class="mb-3">
+                        <label class="form-label">Mensaje</label>
+
+                        <textarea class="form-control" rows="6">
+Estimado cliente,
+
+Le compartimos la cotización solicitada.
+Quedamos atentos a su aprobación.
+
+Saludos,
+Térraba Comunicaciones WCW SA
+                        </textarea>
+                    </div>
+
+                    <!-- ACCIONES -->
+                    <div class="d-flex justify-content-between mt-4">
+
+                        <a href="/Cotizaciones/Details" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver
+                        </a>
+
+                        <button type="button" class="btn btn-primary px-4"
+                                onclick="enviarCotizacion()">
+                            <i class="bi bi-send"></i> Enviar
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <!-- ALERTA -->
+                <div id="alertaEnvio" class="alert alert-success mt-3 d-none text-center">
+                    <i class="bi bi-check-circle"></i>
+                    Cotización enviada correctamente
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function enviarCotizacion() {
+        document.getElementById("alertaEnvio").classList.remove("d-none");
+    }
+</script>

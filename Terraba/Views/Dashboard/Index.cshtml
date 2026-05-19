@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="text-primary fw-bold mb-0">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </h3>
+            <small class="text-secondary">Resumen general del sistema</small>
+        </div>
+
+        <div class="d-flex gap-2">
+
+            <button class="btn btn-outline-success" onclick="exportar('pdf')">
+                <i class="bi bi-file-earmark-pdf"></i>
+            </button>
+
+            <button class="btn btn-outline-success" onclick="exportar('excel')">
+                <i class="bi bi-file-earmark-excel"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- KPIs -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-row align-items-center gap-3">
+                <i class="bi bi-megaphone fs-2 text-primary"></i>
+                <div>
+                    <small class="text-secondary">Campañas</small>
+                    <h4 class="fw-bold mb-0">12</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-row align-items-center gap-3">
+                <i class="bi bi-file-earmark-text fs-2 text-primary"></i>
+                <div>
+                    <small class="text-secondary">Cotizaciones</small>
+                    <h4 class="fw-bold mb-0">25</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-row align-items-center gap-3">
+                <i class="bi bi-people fs-2 text-primary"></i>
+                <div>
+                    <small class="text-secondary">Clientes</small>
+                    <h4 class="fw-bold mb-0">8</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 d-flex flex-row align-items-center gap-3">
+                <i class="bi bi-currency-dollar fs-2 text-success"></i>
+                <div>
+                    <small class="text-secondary">Ingresos Est.</small>
+                    <h4 class="fw-bold mb-0">$12,500</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GRÁFICAS -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3">
+                <h6 class="text-secondary">Estado de Campañas</h6>
+                <canvas id="graficoCampanas"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3">
+                <h6 class="text-secondary">Cotizaciones por Mes</h6>
+                <canvas id="graficoCotizaciones"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    new Chart(document.getElementById("graficoCampanas"), {
+    type: 'doughnut',
+    data: {
+    labels: ['Planificada', 'En proceso', 'Finalizada'],
+    datasets: [{
+    data: [5, 4, 3]
+    }]
+    }
+    });
+
+    new Chart(document.getElementById("graficoCotizaciones"), {
+    type: 'bar',
+    data: {
+    labels: ['Ene', 'Feb', 'Mar', 'Abr'],
+    datasets: [{
+    label: 'Cotizaciones',
+    data: [5, 8, 6, 10]
+    }]
+    }
+    });
+
+    function exportar(tipo) {
+
+    if(tipo === 'pdf'){
+    mostrarNotificacion("Reporte exportado en PDF", "success");
+    }
+
+    if(tipo === 'excel'){
+    mostrarNotificacion("Reporte exportado en Excel", "success");
+    }
+
+    }
+
+</script>
