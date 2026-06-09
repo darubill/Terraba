@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Campañas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3 class="text-primary">
+            <i class="bi bi-megaphone"></i> Campañas
+        </h3>
+
+        <a href="/Campanas/Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nueva Campaña
+        </a>
+    </div>
+
+    <table class="table table-hover">
+
+        <thead class="table-primary">
+            <tr>
+                <th>Cliente</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Juan Pérez</td>
+                <td>Campaña Redes Sociales</td>
+
+                <td>
+                    <span class="badge bg-warning">Planificada</span>
+                </td>
+
+                <td>01/05/2026</td>
+                <td>10/05/2026</td>
+
+                <td>
+                    <a href="/Campanas/Details" class="btn btn-sm btn-primary">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

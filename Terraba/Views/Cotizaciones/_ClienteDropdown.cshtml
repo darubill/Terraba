@@ -1,0 +1,12 @@
+@model IEnumerable<Terraba.Models.Cliente>
+
+<select name="IdCliente" class="form-select">
+	<option value="">Seleccione un cliente</option>
+	@if (Model != null)
+	{
+		foreach (var c in Model)
+		{
+			<option value="@c.Id">@c.Nombre</option>
+		}
+	}
+</select>

@@ -1,0 +1,143 @@
+﻿@model Terraba.Models.Cotizacion
+
+@{
+	ViewData["Title"] = "Nueva Cotización";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+	<h3 class="text-primary mb-4">
+		<i class="bi bi-calculator"></i> Generar Cotización
+	</h3>
+
+	<div class="row">
+
+		<!-- FORMULARIO -->
+		<div class="col-md-6">
+
+			<div class="card p-4 shadow">
+
+				<form asp-action="Create" method="post">
+					@Html.AntiForgeryToken()
+
+				<div class="mb-3">
+					<label>Cliente</label>
+					<select name="IdCliente" class="form-select">
+						<option value="">Seleccione un cliente</option>
+						@if (ViewBag.Clientes is IEnumerable<Terraba.Models.Cliente> clients)
+						{
+							foreach (var c in clients)
+							{
+								<option value="@c.Id">@((!string.IsNullOrEmpty(c.Empresa) ? c.Empresa : c.Nombre))</option>
+							}
+						}
+					</select>
+					<span asp-validation-for="IdCliente" class="text-danger small"></span>
+				</div>
+
+				<div class="mb-3">
+					<label>Tipo de Medio</label>
+					<select class="form-select" id="medio">
+						<option value="Redes Sociales|100">Redes Sociales ($100)</option>
+						<option value="Radio|300">Radio ($300)</option>
+						<option value="Televisión|500">Televisión ($500)</option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label>Duración (días)</label>
+					<input asp-for="Duracion" type="number" id="duracion" class="form-control" value="1">
+				</div>
+
+				<div class="mb-3">
+					<label>Alcance</label>
+					<select asp-for="Alcance" class="form-select" id="alcance">
+						<option value="1">Local</option>
+						<option value="1.5">Regional</option>
+						<option value="2">Nacional</option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label>Diseño</label>
+					<select class="form-select" id="diseno">
+						<option value="Básico|50">Básico ($50)</option>
+						<option value="Premium|150">Premium ($150)</option>
+					</select>
+				</div>
+
+				<input asp-for="Total" type="hidden" />
+				<input asp-for="Medio" type="hidden" />
+				<input asp-for="Diseno" type="hidden" />
+				<!-- IdCliente selected by dropdown -->
+
+				<button type="button" class="btn btn-secondary w-100 mb-2" onclick="calcular()">
+					<i class="bi bi-calculator"></i> Calcular
+				</button>
+
+				<button type="submit" class="btn btn-primary w-100">
+					<i class="bi bi-save"></i> Guardar Cotización
+				</button>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- RESULTADO -->
+		<div class="col-md-6">
+
+			<div class="card p-4 shadow">
+
+				<h5 class="text-primary">Resumen</h5>
+				<hr>
+
+				<p>Medio: <span id="r_medio"></span></p>
+				<p>Duración: <span id="r_duracion"></span></p>
+				<p>Alcance: <span id="r_alcance"></span></p>
+				<p>Diseño: <span id="r_diseno"></span></p>
+
+				<hr>
+
+				<h4 class="text-primary">
+					Total: $<span id="total">0</span>
+				</h4>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script>
+	function calcular() {
+
+		let medio = document.getElementById("medio");
+		let duracion = document.getElementById("duracion").value;
+		let alcance = document.getElementById("alcance").value;
+		let diseno = document.getElementById("diseno");
+
+		// medio value stored as "Name|price"
+		let medioParts = medio.value.split('|');
+		let precioMedio = parseFloat(medioParts[1] || 0);
+		let precioDiseno = parseFloat(diseno.value.split('|')[1] || 0);
+
+		let total = (precioMedio * duracion * alcance) + precioDiseno;
+
+		document.getElementById("total").innerText = total;
+
+		document.getElementById("r_medio").innerText = medioParts[0];
+		document.getElementById("r_duracion").innerText = duracion + " días";
+		document.getElementById("r_alcance").innerText = alcance;
+		document.getElementById("r_diseno").innerText = diseno.value.split('|')[0];
+
+		// fill hidden inputs for form submission
+		document.querySelector('input[name="Total"]').value = total;
+		document.querySelector('input[name="Medio"]').value = medioParts[0];
+		document.querySelector('input[name="Diseno"]').value = diseno.value.split('|')[0];
+	}
+</script>

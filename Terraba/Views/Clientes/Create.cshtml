@@ -1,0 +1,115 @@
+﻿@model Terraba.Models.Cliente
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="fade-in">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h3 class="text-primary fw-bold mb-0">
+            <i class="bi bi-person-plus"></i> Nuevo Cliente
+        </h3>
+        <small class="text-secondary">Registrar un nuevo cliente en el sistema</small>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="card shadow-sm p-4">
+
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+
+                <!-- NOMBRE -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nombre completo</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input name="Nombre" class="form-control" placeholder="Ej: Juan Pérez">
+                    </div>
+                </div>
+
+                <!-- USUARIO -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nombre de usuario</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                        <input class="form-control" placeholder="usuario123">
+                    </div>
+                </div>
+
+                <!-- CORREO -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Correo electrónico</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input name="Email" type="email" class="form-control" placeholder="correo@email.com">
+                    </div>
+                </div>
+
+                <!-- TELÉFONO -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                        <input name="Telefono" class="form-control" placeholder="8888-8888">
+                    </div>
+                </div>
+
+                <!-- EMPRESA -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Empresa</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-building"></i></span>
+                        <input name="Empresa" class="form-control" placeholder="Nombre de la empresa">
+                    </div>
+                </div>
+
+                <!-- ROL -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Rol</label>
+                    <select class="form-select">
+                        <option>Cliente</option>
+                        <option>Administrador</option>
+                    </select>
+                </div>
+
+                <!-- CONTRASEÑA -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="********">
+                    </div>
+                </div>
+
+                <!-- CONFIRMAR -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Confirmar contraseña</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" class="form-control" placeholder="********">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOTONES -->
+            <div class="d-flex justify-content-end gap-2 mt-3">
+
+                <a href="/Clientes/Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancelar
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Guardar Cliente
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
