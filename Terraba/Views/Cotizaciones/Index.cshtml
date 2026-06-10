@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Terraba.Models.Cotizacion>
+
+@{
     ViewData["Title"] = "Cotizaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -31,7 +33,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>Cliente</th>
-                        <th>Servicio</th>
+                        <th>Fecha</th>
                         <th class="text-end">Total</th>
                         <th>Estado</th>
                         <th class="text-end">Acciones</th>
@@ -39,43 +41,41 @@
                 </thead>
 
                 <tbody>
-
-                    <tr>
-
-                        <td class="fw-semibold">Juan Pérez</td>
-
-                        <td class="text-secondary">
-                            Publicidad Digital
-                        </td>
-
-                        <td class="text-end fw-bold">$500</td>
-
-                        <td>
-                            <span class="badge bg-warning">Pendiente</span>
-                        </td>
-
-                        <!-- ACCIONES -->
-                        <td class="text-end">
-
-                            <div class="btn-group">
-
-                                <a href="/Cotizaciones/Details" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-
-                                <a href="/Cotizaciones/Edit" class="btn btn-outline-warning btn-sm">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var cot in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@cot.Cliente</td>
+                                <td class="text-secondary">@cot.Fecha.ToString("yyyy-MM-dd")</td>
+                                <td class="text-end fw-bold">$@cot.Total.ToString("F2")</td>
+                                <td>
+                                    @{
+                                        var badge = cot.Estado switch
+                                        {
+                                            "Borrador" => "bg-secondary",
+                                            "Enviada" => "bg-primary",
+                                            "Aprobada" => "bg-success",
+                                            "Rechazada" => "bg-danger",
+                                            "Convertida" => "bg-dark",
+                                            _ => "bg-secondary"
+                                        };
+                                    }
+                                    <span class="badge @badge">@cot.Estado</span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a asp-action="Details" asp-route-id="@cot.Id" class="btn btn-outline-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                        <a asp-action="Edit" asp-route-id="@cot.Id" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a>
+                                        <form asp-action="Delete" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@cot.Id" />
+                                            <button class="btn btn-outline-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
 
                 </tbody>
 

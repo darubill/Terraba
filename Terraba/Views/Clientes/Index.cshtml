@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Terraba.Models.Cliente>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,48 +44,55 @@
                     <tr>
                         <th>Cliente</th>
                         <th>Empresa</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Creado</th>
                         <th>Estado</th>
                         <th class="text-end">Acciones</th>
                     </tr>
                 </thead>
 
                 <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var c in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@c.Nombre</td>
+                                <td class="text-secondary">@c.Empresa</td>
+                                <td class="text-secondary">@c.Email</td>
+                                <td class="text-secondary">@c.Telefono</td>
+                                <td class="text-secondary">@c.FechaCreacion.ToString("yyyy-MM-dd")</td>
 
-                    <tr>
-                        <td class="fw-semibold">Juan Pérez</td>
-                        <td class="text-secondary">GFT S.A</td>
+                                <!-- ESTADO -->
+                                <td>
+                                    <span class="badge @(c.Estado=="Activo"?"bg-success":"bg-secondary")">@c.Estado</span>
+                                </td>
 
-                        <!-- ESTADO -->
-                        <td>
-                            <span class="badge bg-success">Activo</span>
-                        </td>
+                                <!-- ACCIONES -->
+                                <td class="text-end">
 
-                        <!-- ACCIONES -->
-                        <td class="text-end">
+                                    <div class="btn-group">
 
-                            <div class="btn-group">
+                                        <a asp-action="Details" asp-route-id="@c.Id" class="btn btn-outline-primary btn-sm">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
 
-                                <a href="/Clientes/Details" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-eye"></i>
-                                </a>
+                                        <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-outline-warning btn-sm">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
 
-                                <a href="/Clientes/Edit" class="btn btn-outline-warning btn-sm">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
+                                        <form asp-action="Delete" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@c.Id" />
+                                            <button class="btn btn-outline-danger btn-sm" type="submit"><i class="bi bi-x-circle"></i></button>
+                                        </form>
 
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+                                    </div>
 
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="bi bi-pause"></i>
-                                </button>
-
-                            </div>
-
-                        </td>
-                    </tr>
-
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
 
             </table>

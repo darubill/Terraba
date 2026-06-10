@@ -1,0 +1,198 @@
+﻿@model Terraba.Models.Usuario
+
+@{
+    ViewData["Title"] = "Registro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Registro - Térraba Comunicaciones</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+
+            * {
+                font-family: 'Inter', sans-serif;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #2563EB, #1E3A8A);
+                padding: 20px;
+            }
+
+            .register-card {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 22px;
+                backdrop-filter: blur(10px);
+                background: rgba(255,255,255,0.95);
+            }
+
+            .input-group-text {
+                background: white;
+                border-right: none;
+            }
+
+            .form-control,
+            .form-select {
+                border-left: none;
+            }
+
+            .btn-primary {
+                height: 48px;
+                font-weight: 600;
+            }
+
+            .btn-outline-primary {
+                height: 48px;
+                font-weight: 500;
+            }
+
+            .brand-icon {
+                font-size: 48px;
+            }
+
+            .text-danger {
+                font-size: .85rem;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-card shadow-lg p-4">
+
+        <!-- Logo -->
+        <div class="text-center mb-4">
+
+            <i class="bi bi-broadcast text-primary brand-icon"></i>
+
+            <h3 class="fw-bold text-primary mt-2 mb-0">
+                Térraba Comunicaciones
+            </h3>
+
+            <small class="text-muted">
+                Crear nueva cuenta
+            </small>
+
+        </div>
+
+        @if (ViewBag.Exito != null)
+        {
+            <div class="alert alert-success text-center">
+                <i class="bi bi-check-circle-fill"></i>
+                @ViewBag.Exito
+            </div>
+        }
+
+        <form asp-action="Registro" method="post">
+
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Nombre completo
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                    </span>
+
+                    <input asp-for="Nombre"
+                           class="form-control"
+                           placeholder="Ej. María López" />
+                </div>
+
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <!-- Correo -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Correo electrónico
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+
+                    <input asp-for="Email"
+                           class="form-control"
+                           placeholder="correo@empresa.com" />
+                </div>
+
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Contraseña
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-lock"></i>
+                    </span>
+
+                    <input asp-for="Contrasena"
+                           type="password"
+                           class="form-control"
+                           placeholder="Ingrese una contraseña segura" />
+                </div>
+
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+
+            <!-- Rol -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold">
+                    Rol
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-person-badge"></i>
+                    </span>
+
+                    <select asp-for="Rol" class="form-select">
+                        <option value="">Seleccione un rol</option>
+                        <option value="vendedor">Vendedor</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-person-plus-fill"></i>
+                Crear cuenta
+            </button>
+
+            <!-- Volver -->
+            <div class="mt-3">
+                <a asp-action="Login" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-box-arrow-in-left"></i>
+                    Ya tengo cuenta
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

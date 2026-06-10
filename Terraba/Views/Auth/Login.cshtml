@@ -99,6 +99,13 @@
 
         </form>
 
+        <!-- BUTTON: Registrar -->
+        <div class="mt-3">
+            <a asp-controller="Auth" asp-action="Registro" class="btn btn-outline-primary w-100">
+                <i class="bi bi-person-plus"></i> Registrar usuario
+            </a>
+        </div>
+
         <!-- ERROR -->
         @if (ViewBag.Error != null)
         {
